@@ -230,7 +230,6 @@ Install_Node()
 Press_Install()
 {
 	if [ -z ${Auto_Install} ]; then
-		echo ""
 		Echo_Green "Press any key to install...or Press Ctrl+c to cancel"
 		OLDCONFIG=`stty -g`
 		stty -icanon -echo min 1 time 0
@@ -343,30 +342,30 @@ Set_Node()
 	sed -i "s#MU_SUFFIX = 'zhaoj.in'#MU_SUFFIX = '${MU_SUFFIX}'#" userapiconfig.py
 	sed -i "s#MU_REGEX = '%5m%id.%suffix'#MU_REGEX = '${MU_REGEX}'#" userapiconfig.py
 	
-	if [ ${INTERFACE} = '1' ]; then
+	if [ "${INTERFACE}" = "1" ]; then
 		#API_Input
-		if [ "${WEBAPI_URL}" = "" ]; then
+		if [ "${WEBAPI_URL}" != "" ]; then
 			sed -i "s#WEBAPI_URL = 'https://zhaoj.in'#WEBAPI_URL = '${WEBAPI_URL}'#" userapiconfig.py
 		fi
-		if [ "${WEBAPI_TOKEN}" = "" ]; then
+		if [ "${WEBAPI_TOKEN}" != "" ]; then
 			sed -i "s#WEBAPI_TOKEN = 'glzjin'#WEBAPI_TOKEN = '${WEBAPI_TOKEN}'#" userapiconfig.py
 		fi
 	else
 		sed -i "s#API_INTERFACE = 'modwebapi'#API_INTERFACE = 'glzjinmod'#" userapiconfig.py
 		#DB_Input
-		if [ "${MYSQL_HOST}" = "" ]; then
+		if [ "${MYSQL_HOST}" != "" ]; then
 			sed -i "s#MYSQL_HOST = '127.0.0.1'#MYSQL_HOST = '${MYSQL_HOST}'#" userapiconfig.py
 		fi
-		if [ "${MYSQL_PORT}" = "" ]; then
+		if [ "${MYSQL_PORT}" != "" ]; then
 			sed -i "s#MYSQL_PORT = 3306#MYSQL_PORT = ${MYSQL_PORT}#" userapiconfig.py
 		fi
-		if [ "${MYSQL_USER}" = "" ]; then
+		if [ "${MYSQL_USER}" != "" ]; then
 			sed -i "s#MYSQL_USER = 'ss'#MYSQL_USER = '${MYSQL_USER}'#" userapiconfig.py
 		fi
-		if [ "${MYSQL_PASS}" = "" ]; then
+		if [ "${MYSQL_PASS}" != "" ]; then
 			sed -i "s#MYSQL_PASS = 'ss'#MYSQL_PASS = '${MYSQL_PASS}'#" userapiconfig.py
 		fi
-		if [ "${MYSQL_DB}" = "" ]; then
+		if [ "${MYSQL_DB}" != "" ]; then
 			sed -i "s#MYSQL_DB = 'shadowsocks'#MYSQL_DB = '${MYSQL_DB}'#" userapiconfig.py
 		fi
 	fi
@@ -376,7 +375,7 @@ Set_Node()
 
 Set_Crontab()
 {
-	if [ "${Restart}" != "" ]; then
+	if [ "${Restart}" != "n" ]; then
 		echo "0 ${Restart} * * * supervisorctl reload" >> ${crontabs_path}
 		/sbin/service crond restart
 	fi
