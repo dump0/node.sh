@@ -27,6 +27,6 @@
 方法二：
 1.  复制下面的命令，粘贴到后端上，以root权限执行
 
-    `wget -N --no-check-certificate https://raw.githubusercontent.com/dump0/node.sh/master/node.sh && chmod +x node.sh && /node.sh`
+    `wget -N --no-check-certificate https://raw.githubusercontent.com/dump0/node.sh/master/node.sh && chmod +x node.sh && ./node.sh`
  
 2.  在终端上输入各项参数
