@@ -345,7 +345,6 @@ Set_Node()
 	
 	if [ ${INTERFACE} = '1' ]; then
 		#API_Input
-		if 
 		if [ "${WEBAPI_URL}" = "" ]; then
 			sed -i "s#WEBAPI_URL = 'https://zhaoj.in'#WEBAPI_URL = '${WEBAPI_URL}'#" userapiconfig.py
 		fi
