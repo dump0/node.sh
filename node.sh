@@ -211,7 +211,13 @@ General_Input()
 		read -p "Please input your MU_REGEX: " MU_REGEX
 	fi
 	if [ -z ${Restart} ]; then
-		read -p "Please input restart hour: " Restart
+		read -p "Please input restart hour (if not, input n): " Restart
+	fi
+	if [ -z ${BBR} ]; then
+		Echo_Yellow "Please choose BBR version."
+		echo "0: none"
+		echo "1: BBR"
+		read -p "Enter your choice (0, 1): " BBR
 	fi
 }
 
@@ -401,7 +407,9 @@ Set_openfiles()
 
 Install_BBR()
 {
-	wget --no-check-certificate https://github.com/dump0/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+	if [ "${BBR}" = "1" ]; then
+		wget --no-check-certificate https://github.com/dump0/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+	fi
 }
 
 
